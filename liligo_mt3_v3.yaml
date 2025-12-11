@@ -51,6 +51,7 @@ wifi:
   fast_connect: true
   power_save_mode: high
   min_auth_mode: wpa2
+  use_address: #use local ip address
 
 ## uncomment if you need a fixed ip address
 #  manual_ip:
