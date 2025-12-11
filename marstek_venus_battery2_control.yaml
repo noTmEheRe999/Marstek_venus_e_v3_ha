@@ -11,7 +11,7 @@
           state_class: measurement
           state: >
             {% if states('sensor.marstek_m2_ac_power') | float(0) < 0 %}
-              {{ (states('sensor.arstek_m2_ac_power') | float(0)) *-1 }}
+              {{ (states('sensor.marstek_m2_ac_power') | float(0)) *-1 }}
             {% else %}
               0
             {% endif %}
