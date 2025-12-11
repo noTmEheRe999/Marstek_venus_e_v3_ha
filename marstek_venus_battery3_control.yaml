@@ -4,36 +4,36 @@
   
   template:
     - sensor:
-        - name: "My Battery3 Charging in W"
-          unique_id: my_battery3_charging_in_w
+        - name: "My M3 Charging in W"
+          unique_id: my_m3_charging_in_w
           unit_of_measurement: W
           device_class: power
           state_class: measurement
           state: >
-            {% if states('sensor.lilygo_rs485-3_marstek_ac_power') | float(0) < 0 %}
-              {{ (states('sensor.lilygo_rs485-3_marstek_ac_power') | float(0)) *-1 }}
+            {% if states('sensor.marstek_m3_ac_power') | float(0) < 0 %}
+              {{ (states('sensor.marstek_m3_ac_power') | float(0)) *-1 }}
             {% else %}
               0
             {% endif %}
           
-        - name: "My Battery3 Discharging in W"
-          unique_id: my_battery3_discharging_in_w
+        - name: "My M3 Discharging in W"
+          unique_id: my_m3_discharging_in_w
           unit_of_measurement: W
           device_class: power
           state_class: measurement
           state: >
-            {% if states('sensor.lilygo_rs485-3_marstek_ac_power') | float(0) > 0 %}
-              {{ (states('sensor.lilygo_rs485-3_marstek_ac_power') | float(0)) }}
+            {% if states('sensor.marstek_m3_ac_power') | float(0) > 0 %}
+              {{ (states('sensor.marstek_m3_ac_power') | float(0)) }}
             {% else %}
               0
             {% endif %}
-        - name: "My Battery3 Efficiency Percentage"
-          unique_id: my_battery3_efficiency_percentage
+        - name: "My M3 Efficiency Percentage"
+          unique_id: my_m3_efficiency_percentage
           unit_of_measurement: "%"
           state_class: measurement
           state: >
-            {% set charging = states('sensor.my_battery3_daily_charging_in_kwh') | float(0) %}
-            {% set discharging = states('sensor.my_battery3_daily_discharging_in_kwh') | float(0) %}
+            {% set charging = states('sensor.my_m3_daily_charging_in_kwh') | float(0) %}
+            {% set discharging = states('sensor.my_m3_daily_discharging_in_kwh') | float(0) %}
             {% if charging > 0 %}
               {{ ((discharging / charging) * 100) | int }}
             {% else %}
@@ -46,17 +46,17 @@
   
   sensor:
     - platform: integration
-      name: My Battery3 Discharging in kWh
-      unique_id: my_battery3_discharging_in_kwh
-      source: sensor.my_battery3_discharging_in_w
+      name: My M3 Discharging in kWh
+      unique_id: my_m3_discharging_in_kwh
+      source: sensor.my_m3_discharging_in_w
       round: 2
       unit_prefix: k
       unit_time: h
       method: left
     - platform: integration
-      name: My Battery3 Charging in kWh
-      unique_id: my_battery3_charging_in_kwh
-      source: sensor.my_battery3_charging_in_w
+      name: My M3 Charging in kWh
+      unique_id: my_m3_charging_in_kwh
+      source: sensor.my_m3_charging_in_w
       round: 2
       unit_prefix: k
       unit_time: h
@@ -67,50 +67,50 @@
 # --------------
   utility_meter:
     daily_discharge3:
-      name: My Battery3 Daily Discharging in kWh
-      unique_id: my_battery3_daily_discharging_in_kwh
-      source: sensor.my_battery3_discharging_in_kwh
+      name: My M3 Daily Discharging in kWh
+      unique_id: my_m3_daily_discharging_in_kwh
+      source: sensor.my_m3_discharging_in_kwh
       cycle: daily
 
     daily_charge3:
-      name: My Battery3 Daily Charging in kWh
-      unique_id: my_battery3_daily_charging_in_kwh
-      source: sensor.my_battery3_charging_in_kwh
+      name: My M3 Daily Charging in kWh
+      unique_id: my_m3_daily_charging_in_kwh
+      source: sensor.my_m3_charging_in_kwh
       cycle: daily
 
     weekly_discharge3:
-      name: My Battery3 Weekly Discharging in kWh
-      unique_id: my_battery3_weekly_discharging_in_kwh
-      source: sensor.my_battery3_discharging_in_kwh
+      name: My M3 Weekly Discharging in kWh
+      unique_id: my_m3_weekly_discharging_in_kwh
+      source: sensor.my_m3_discharging_in_kwh
       cycle: weekly
 
     weekly_charge3:
-      name: My Battery3 Weekly Charging in kWh
-      unique_id: my_battery3_weekly_charging_in_kwh
-      source: sensor.my_battery3_charging_in_kwh
+      name: My M3 Weekly Charging in kWh
+      unique_id: my_m3_weekly_charging_in_kwh
+      source: sensor.my_m3_charging_in_kwh
       cycle: weekly
 
     monthly_discharge3:
-      name: My Battery3 Monthly Discharging in kWh
-      unique_id: my_battery3_monthly_discharging_in_kwh
-      source: sensor.my_battery3_discharging_in_kwh
+      name: My M3 Monthly Discharging in kWh
+      unique_id: my_m3_monthly_discharging_in_kwh
+      source: sensor.my_m3_discharging_in_kwh
       cycle: monthly
 
     monthly_charge3:
-      name: My Battery3 Monthly Charging in kWh
-      unique_id: my_battery3_monthly_charging_in_kwh
-      source: sensor.my_battery3_charging_in_kwh
+      name: My M3 Monthly Charging in kWh
+      unique_id: my_m3_monthly_charging_in_kwh
+      source: sensor.my_m3_charging_in_kwh
       cycle: monthly
 
     yearly_discharge3:
-      name: My Battery3 Yearly Discharging in kWh
-      unique_id: my_battery3_yearly_discharging_in_kwh
-      source: sensor.my_battery3_discharging_in_kwh
+      name: My M3 Yearly Discharging in kWh
+      unique_id: my_m3_yearly_discharging_in_kwh
+      source: sensor.my_m3_discharging_in_kwh
       cycle: yearly
 
     yearly_charge3:
-      name: My Battery3 Yearly Charging in kWh
-      unique_id: my_battery3_yearly_charging_in_kwh
-      source: sensor.my_battery3_charging_in_kwh
+      name: My M3 Yearly Charging in kWh
+      unique_id: my_m3_yearly_charging_in_kwh
+      source: sensor.my_m3_charging_in_kwh
       cycle: yearly
 
