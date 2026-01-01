@@ -52,7 +52,7 @@ wifi:
   fast_connect: true
   power_save_mode: high
   min_auth_mode: wpa2
-  use_address: #Replace this text with ip-address of liligo on your network
+  use_address: 192.168.1.174
 
 ## uncomment if you need a fixed ip address
 #  manual_ip:
@@ -150,7 +150,7 @@ switch:
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 20
-
+      
 # Tekstsensoren
 text_sensor:
   ## DEBUG
@@ -198,8 +198,8 @@ text_sensor:
 #      sorting_group_id: Diagnostic
 #      sorting_weight: 9
 
-  - name: "VMS Version"
-    id: vms_version_text
+  - name: "VNS Version"
+    id: vns_version_text
     icon: mdi:factory
     platform: template
     update_interval: never  # updates only when sensor triggers
@@ -441,7 +441,7 @@ sensor:
             sprintf(buf, "V%d", version);
             id(ems_version_text).publish_state(buf);
 
-  - id: vms_version # No name, since it's internal
+  - id: vns_version # No name, since it's internal
     icon: mdi:factory
     platform: modbus_controller
     modbus_controller_id: mt
@@ -457,7 +457,7 @@ sensor:
             int version = (int)x;
             char buf[5];
             sprintf(buf, "V%d", version);
-            id(vms_version_text).publish_state(buf);
+            id(vns_version_text).publish_state(buf);
 
   - id: bms_version # No name, since it's internal
     icon: mdi:factory
